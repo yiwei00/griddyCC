@@ -20,18 +20,22 @@ RUN mkdir -p $PREFIX
 RUN mkdir -p binutils
 WORKDIR /build/binutils
 RUN /build/binutils-2.43/configure --target=$TARGET --prefix="$PREFIX" --with-sysroot --disable-nls --disable-werror
-RUN make
+RUN make -j 2
 RUN make install
+WORKDIR /build
+RUN rm -rf binutils binutils-2.43
 # build gcc
 RUN mkdir -p /build/gcc
 WORKDIR /build/gcc
 RUN /build/gcc-14.2.0/configure --target=$TARGET --prefix="$PREFIX" --disable-nls --enable-languages=c,c++ --without-headers --disable-hosted-libstdcxx
-RUN make all-gcc
-RUN make all-target-libgcc
-RUN make all-target-libstdc++-v3
+RUN make -j 2 all-gcc
+RUN make -j 2 all-target-libgcc
+RUN make -j 2 all-target-libstdc++-v3
 RUN make install-gcc
 RUN make install-target-libgcc
 RUN make install-target-libstdc++-v3
+WORKDIR /build
+RUN rm -rf gcc gcc-14.2.0
 
 # finalize
 WORKDIR /
