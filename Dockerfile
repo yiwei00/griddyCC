@@ -7,10 +7,11 @@ RUN apt install -y wget
 WORKDIR /build
 # download src
 RUN wget https://ftp.gnu.org/gnu/binutils/binutils-2.43.tar.gz
-RUN wget https://ftp.gnu.org/gnu/gcc/gcc-14.2.0/gcc-14.2.0.tar.gz
 RUN tar -xzf binutils-2.43.tar.gz
+RUN rm binutils-2.43.tar.gz
+RUN wget https://ftp.gnu.org/gnu/gcc/gcc-14.2.0/gcc-14.2.0.tar.gz
 RUN tar -xzf gcc-14.2.0.tar.gz
-RUN rm binutils-2.43.tar.gz gcc-14.2.0.tar.gz
+RUN rm gcc-14.2.0.tar.gz
 # build setup
 ENV PREFIX="/cross"
 ENV TARGET=aarch64-none-elf
