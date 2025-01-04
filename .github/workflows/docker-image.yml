@@ -8,6 +8,8 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    permissions:
+      packages: write
     steps:
     - name: Checkout repo
       uses: actions/checkout@v4
@@ -24,4 +26,4 @@ jobs:
       with:
         context: .
         push: true
-        tags: griddy-cc:latest
+        tags: ghcr.io/yiwei00/griddy-cc:latest
