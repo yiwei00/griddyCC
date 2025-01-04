@@ -6,7 +6,7 @@ on:
       - "main"
     paths:
       - "./Dockerfile"
-
+  workflow_dispatch:
 jobs:
   publish:
     runs-on: ubuntu-latest
