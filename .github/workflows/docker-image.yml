@@ -5,7 +5,8 @@ on:
     branches:
       - "main"
     paths:
-      - "./Dockerfile"
+      - ./Dockerfile
+      - .github/workflows/docker-image.yml
   workflow_dispatch:
 jobs:
   publish:
